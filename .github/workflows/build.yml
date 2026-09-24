@@ -26,6 +26,12 @@ jobs:
         # Обновляем версию Gradle на стабильную 6.1.1
         sed -i 's/gradle-3.3-all.zip/gradle-6.1.1-all.zip/g' gradle/wrapper/gradle-wrapper.properties
         
+        # Жестко включаем поддержку AndroidX в свойствах Gradle
+        cat << 'EOF' > gradle.properties
+        android.useAndroidX=true
+        android.enableJetifier=true
+        EOF
+        
         # Переписываем корневой build.gradle на совместимый плагин 4.0.1
         cat << 'EOF' > build.gradle
         buildscript {
@@ -38,7 +44,7 @@ jobs:
         task clean(type: Delete) { delete rootProject.buildDir }
         EOF
 
-        # Исправляем внутренний app/build.gradle под новые стандарты
+        # Исправляем внутренний app/build.gradle под стандарты AndroidX
         cat << 'EOF' > app/build.gradle
         apply plugin: 'com.android.application'
         android {
