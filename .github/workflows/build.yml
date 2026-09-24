@@ -67,6 +67,7 @@ jobs:
             implementation fileTree(dir: 'libs', include: ['*.jar'])
             implementation 'androidx.appcompat:appcompat:1.2.0'
             implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+            implementation 'com.github.markushi:circlebutton:1.1'
         }
         EOF
 
